@@ -51,7 +51,7 @@ class list {
     std::shared_ptr<Node> ptr_next;
 
     template<class...Args>
-    explicit Node(Args&&...args) : value(std::forward<Args>(args)...) { }
+    explicit Node(Args&&... args) : value(std::forward<Args>(args)...) { }
   };
 
  private:
@@ -136,7 +136,7 @@ class list {
    public:
     explicit const_iterator(Node* ptr) : iterator(ptr) { }
 
-    const value_type& operator*() {return this->iterator::operator*();}
+    const value_type& operator*() { return this->iterator::operator*(); }
     const value_type* operator->() {return this->iterator::operator->();}
   };
 

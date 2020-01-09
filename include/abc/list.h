@@ -51,7 +51,7 @@ class list {
     std::shared_ptr<Node> ptr_next;
 
     template<class...Args>
-    explicit Node(Args&&...args) : value(std::forward<Args>(args)...) { }
+    explicit Node(Args&&... args) : value(std::forward<Args>(args)...) { }
   };
 
  private:

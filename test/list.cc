@@ -1,11 +1,14 @@
 // Copyright 2020 Yu Kainan
 
 #include "abc/list.h"
+
 #include <algorithm>
 #include <chrono>
 #include <list>
 #include <forward_list>
 #include <iostream>
+
+#include "abc/data/copyable.h"
 #include "gtest/gtest.h"
 
 class TestList : public ::testing::Test {

@@ -18,7 +18,7 @@ class TestList : public ::testing::Test {
   // common data
   std::list<int> std_list_of_id{ 4, 3, 2, 1 };
   std::list<Kitten> std_list_of_kitten;
-  abc::list<Kitten> ykn_list_of_kitten; 
+  abc::list<Kitten> ykn_list_of_kitten;
   std::forward_list<Kitten> std_forward_list_of_kitten;
 };
 
@@ -33,75 +33,75 @@ TEST_F(TestList, Size) {
 
 TEST_F(TestList, EmpalceFront) {
   for (auto i : std_list_of_id) {
-      std_list_of_kitten.emplace_front(i);
-      ykn_list_of_kitten.emplace_front(i);
+    std_list_of_kitten.emplace_front(i);
+    ykn_list_of_kitten.emplace_front(i);
   }
   EXPECT_EQ(ykn_list_of_kitten.empty(), std_list_of_kitten.empty());
 }
 TEST_F(TestList, Front) {
   for (auto i : std_list_of_id) {
-      std_list_of_kitten.emplace_front(i);
-      ykn_list_of_kitten.emplace_front(i);
+    std_list_of_kitten.emplace_front(i);
+    ykn_list_of_kitten.emplace_front(i);
   }
   EXPECT_EQ(ykn_list_of_kitten.front(), std_list_of_kitten.front());
 }
 TEST_F(TestList, EmpalceBack) {
   for (auto i : std_list_of_id) {
-      std_list_of_kitten.emplace_back(i);
-      ykn_list_of_kitten.emplace_back(i);
+    std_list_of_kitten.emplace_back(i);
+    ykn_list_of_kitten.emplace_back(i);
   }
   EXPECT_EQ(ykn_list_of_kitten.empty(), std_list_of_kitten.empty());
 }
 TEST_F(TestList, Back) {
   for (auto i : std_list_of_id) {
-      std_list_of_kitten.emplace_back(i);
-      ykn_list_of_kitten.emplace_back(i);
+    std_list_of_kitten.emplace_back(i);
+    ykn_list_of_kitten.emplace_back(i);
   }
   EXPECT_EQ(ykn_list_of_kitten.back(), std_list_of_kitten.back());
 }
 
 TEST_F(TestList, PopFront) {
   for (auto i : std_list_of_id) {
-      std_list_of_kitten.emplace_front(i);
-      ykn_list_of_kitten.emplace_front(i);
+    std_list_of_kitten.emplace_front(i);
+    ykn_list_of_kitten.emplace_front(i);
   }
   while (!std_list_of_kitten.empty()) {
-      std_list_of_kitten.pop_front();
-      ykn_list_of_kitten.pop_front();
-      EXPECT_EQ(ykn_list_of_kitten.empty(), std_list_of_kitten.empty());
+    std_list_of_kitten.pop_front();
+    ykn_list_of_kitten.pop_front();
+    EXPECT_EQ(ykn_list_of_kitten.empty(), std_list_of_kitten.empty());
   }
 }
 
 TEST_F(TestList, PopBack) {
   for (auto i : std_list_of_id) {
-      std_list_of_kitten.emplace_back(i);
-      ykn_list_of_kitten.emplace_back(i);
+    std_list_of_kitten.emplace_back(i);
+    ykn_list_of_kitten.emplace_back(i);
   }
   while (!std_list_of_kitten.empty()) {
-      std_list_of_kitten.pop_back();
-      ykn_list_of_kitten.pop_back();
-      EXPECT_EQ(ykn_list_of_kitten.empty(), std_list_of_kitten.empty());
+    std_list_of_kitten.pop_back();
+    ykn_list_of_kitten.pop_back();
+    EXPECT_EQ(ykn_list_of_kitten.empty(), std_list_of_kitten.empty());
   }
 }
 
 TEST_F(TestList, Iterator) {
   for (auto i : std_list_of_id) {
-      ykn_list_of_kitten.emplace_front(i);
+    ykn_list_of_kitten.emplace_front(i);
   }
   auto iter = std::find(ykn_list_of_kitten.begin(),
-      ykn_list_of_kitten.end(), Kitten(2));
+    ykn_list_of_kitten.end(), Kitten(2));
   EXPECT_NE(iter, ykn_list_of_kitten.end());
   EXPECT_EQ(*iter, Kitten(2));
 
   auto iter1 = std::find(ykn_list_of_kitten.begin(),
-      ykn_list_of_kitten.end(), Kitten(-2));
+    ykn_list_of_kitten.end(), Kitten(-2));
   EXPECT_EQ(iter1, ykn_list_of_kitten.end());
 }
 
 TEST_F(TestList, Erase) {
   for (auto i : std_list_of_id) {
-      ykn_list_of_kitten.emplace_front(i);
-      std_list_of_kitten.emplace_front(i);
+    ykn_list_of_kitten.emplace_front(i);
+    std_list_of_kitten.emplace_front(i);
   }
   auto iter_abc = ykn_list_of_kitten.begin();
   iter_abc++;
@@ -112,33 +112,33 @@ TEST_F(TestList, Erase) {
 
   EXPECT_EQ(*iter_std, *iter_abc);
   while (!std_list_of_kitten.empty()) {
-      EXPECT_EQ(ykn_list_of_kitten.front(), std_list_of_kitten.front());
-      std_list_of_kitten.pop_front();
-      ykn_list_of_kitten.pop_front();
+    EXPECT_EQ(ykn_list_of_kitten.front(), std_list_of_kitten.front());
+    std_list_of_kitten.pop_front();
+    ykn_list_of_kitten.pop_front();
   }
 }
 
 TEST_F(TestList, EmplaceAfter) {
   for (auto i : std_list_of_id) {
-      ykn_list_of_kitten.emplace_front(i);
-      std_forward_list_of_kitten.emplace_front(i);
+    ykn_list_of_kitten.emplace_front(i);
+    std_forward_list_of_kitten.emplace_front(i);
   }
   auto& target = Kitten(2);
   auto ykn_iter = std::find(ykn_list_of_kitten.begin(),
-      ykn_list_of_kitten.end(), target);
+    ykn_list_of_kitten.end(), target);
   ykn_iter = ykn_list_of_kitten.emplace_after(ykn_iter, -1);
   auto std_iter = std::find(std_forward_list_of_kitten.begin(),
-      std_forward_list_of_kitten.end(), target);
+    std_forward_list_of_kitten.end(), target);
   std_iter = std_forward_list_of_kitten.emplace_after(std_iter, -1);
 
   assert(std_iter != std_forward_list_of_kitten.end());
   assert(ykn_iter != ykn_list_of_kitten.end());
   EXPECT_EQ(*std_iter, *ykn_iter);
   while (!std_forward_list_of_kitten.empty()) {
-      EXPECT_EQ(ykn_list_of_kitten.front(),
-        std_forward_list_of_kitten.front());
-      std_forward_list_of_kitten.pop_front();
-      ykn_list_of_kitten.pop_front();
+    EXPECT_EQ(ykn_list_of_kitten.front(),
+      std_forward_list_of_kitten.front());
+    std_forward_list_of_kitten.pop_front();
+    ykn_list_of_kitten.pop_front();
   }
 }
 
@@ -146,8 +146,8 @@ TEST_F(TestList, EmplaceAfter) {
 
 TEST_F(TestList, EmplaceBefore) {
   for (auto i : std_list_of_id) {
-      ykn_list_of_kitten.emplace_back(i);
-      std_list_of_kitten.emplace_back(i);
+    ykn_list_of_kitten.emplace_back(i);
+    std_list_of_kitten.emplace_back(i);
   }
   auto ykn_iter = std::find(ykn_list_of_kitten.begin(),
                               ykn_list_of_kitten.end(), Kitten(2));
@@ -157,17 +157,17 @@ TEST_F(TestList, EmplaceBefore) {
   std_iter = std_list_of_kitten.emplace(std_iter, 0);
   EXPECT_EQ(*std_iter, *ykn_iter);
   while (!std_list_of_kitten.empty()) {
-      EXPECT_EQ(ykn_list_of_kitten.back(), std_list_of_kitten.back());
-      std_list_of_kitten.pop_back();
-      ykn_list_of_kitten.pop_back();
+    EXPECT_EQ(ykn_list_of_kitten.back(), std_list_of_kitten.back());
+    std_list_of_kitten.pop_back();
+    ykn_list_of_kitten.pop_back();
   }
 }
 
 TEST_F(TestList, Equal) {
   auto new_list_of_kitten = decltype(ykn_list_of_kitten)();
   for (auto i : std_list_of_kitten) {
-      ykn_list_of_kitten.emplace_front(i);
-      new_list_of_kitten.emplace_front(i);
+    ykn_list_of_kitten.emplace_front(i);
+    new_list_of_kitten.emplace_front(i);
   }
   EXPECT_TRUE(ykn_list_of_kitten == ykn_list_of_kitten);
   EXPECT_TRUE(ykn_list_of_kitten == new_list_of_kitten);
@@ -176,7 +176,7 @@ TEST_F(TestList, Equal) {
 }
 TEST_F(TestList, Copy) {
   for (auto i : std_list_of_kitten) {
-      ykn_list_of_kitten.emplace_front(i);
+    ykn_list_of_kitten.emplace_front(i);
   }
   auto new_list_of_kitten = ykn_list_of_kitten;
   EXPECT_EQ(new_list_of_kitten, ykn_list_of_kitten);

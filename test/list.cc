@@ -13,22 +13,13 @@
 
 class TestList : public ::testing::Test {
  protected:
-    class Kitten {
-     public:
-        int id;
-        explicit Kitten(int id) : id(id) { }
-        ~Kitten() = default;
-        Kitten(const Kitten&) = default;
-        Kitten& operator=(const Kitten& kit) { return Kitten(kit); }
-        Kitten(Kitten&& kit) { Kitten(std::move(kit)); }
-        Kitten& operator=(Kitten&& Kit)  { return Kitten(std::move(Kit)); }
-        bool operator==(const Kitten& that) const { return id == that.id; }
-        bool operator!=(const Kitten& that) const { return !operator==(that);}
-    };
     std::list<int> std_list_of_id{ 4, 3, 2, 1 };
     std::list<Kitten> std_list_of_kitten;
     abc::list<Kitten> ykn_list_of_kitten; 
     std::forward_list<Kitten> std_forward_list_of_kitten;
+  // helper class
+  using Kitten = abc::data::Copyable;
+  // common data
 };
 
 TEST_F(TestList, Empty) {

@@ -10,6 +10,7 @@ set_target_properties(test_vector PROPERTIES OUTPUT_NAME vector)
 target_link_libraries(test_vector gtest_main)
 add_test(NAME TestVector COMMAND vector)
 
+
 add_executable(test_list list.cc)
 set_target_properties(test_list PROPERTIES OUTPUT_NAME list)
 target_link_libraries(test_list gtest_main)

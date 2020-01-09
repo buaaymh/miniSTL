@@ -142,13 +142,9 @@ class list {
 
   const_iterator cbegin()  const { return  const_iterator(ptr_head_.get()); }
   const_iterator cend()  const { return const_iterator(nullptr); }
-  const_iterator crbegin() const { return const_iterator(ptr_tail_.get()); }
-  const_iterator crend() const { return const_iterator(nullptr); }
 
   const_iterator begin() const  { return cbegin(); }
   const_iterator end() const  { return cend(); }
-  const_iterator rbegin() const { return crbegin(); }
-  const_iterator rend() const { return crend(); }
 
  public:
   bool empty() {

@@ -123,7 +123,7 @@ TEST_F(TestList, EmplaceAfter) {
     ykn_list_of_kitten.emplace_front(i);
     std_forward_list_of_kitten.emplace_front(i);
   }
-  auto& target = Kitten(2);
+  auto target = Kitten(2);
   auto ykn_iter = std::find(ykn_list_of_kitten.begin(),
     ykn_list_of_kitten.end(), target);
   ykn_iter = ykn_list_of_kitten.emplace_after(ykn_iter, -1);

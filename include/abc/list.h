@@ -137,7 +137,7 @@ class list {
     explicit const_iterator(Node* ptr) : iterator(ptr) { }
 
     const value_type& operator*() {return this->iterator::operator*();}
-    const value_type* operator->() {return &(this->operator*());}
+    const value_type* operator->() {return this->iterator::operator->();}
   };
 
   const_iterator cbegin()  const { return  const_iterator(ptr_head_.get()); }

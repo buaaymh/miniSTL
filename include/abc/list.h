@@ -136,7 +136,7 @@ class list {
    public:
     explicit const_iterator(Node* ptr) : iterator(ptr) { }
 
-    const value_type& operator*() {return ptr_node->value;}
+    const value_type& operator*() {return this->iterator::operator*();}
     const value_type* operator->() {return &(this->operator*());}
   };
 

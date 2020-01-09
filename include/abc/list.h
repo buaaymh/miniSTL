@@ -50,7 +50,7 @@ class list {
     std::shared_ptr<Node> ptr_prev;
     std::shared_ptr<Node> ptr_next;
 
-    template<class...Args>
+    template<class... Args>
     explicit Node(Args&&... args) : value(std::forward<Args>(args)...) { }
   };
 
@@ -162,8 +162,8 @@ class list {
   }
 
  public:
-  template <class...Args>
-  void emplace_back(Args&&...args) {
+  template <class... Args>
+  void emplace_back(Args&&... args) {
     std::shared_ptr<Node> ptr_new = std::make_shared<Node>(
       std::forward<Args>(args)...);
     if (ptr_tail_ == nullptr) {
@@ -246,8 +246,8 @@ class list {
     }
   }
 
-  template <class...Args>
-  iterator emplace_after(iterator iter, Args&&...args) {
+  template <class... Args>
+  iterator emplace_after(iterator iter, Args&&... args) {
     if (iter.ptr_node == nullptr) {
       emplace_back(std::forward<Args>(args)...);
       iter = this->begin();
@@ -276,8 +276,8 @@ class list {
     return iter;
   }
 
-  template <class...Args>
-  iterator emplace_before(iterator iter, Args&&...args) {
+  template <class... Args>
+  iterator emplace_before(iterator iter, Args&&... args) {
     if (iter.ptr_node == nullptr) {
       emplace_back(std::forward<Args>(args)...);
       iter = this->begin();

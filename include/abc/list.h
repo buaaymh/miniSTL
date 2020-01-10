@@ -247,37 +247,7 @@ class list {
   }
 
   template <class... Args>
-  iterator emplace_after(iterator iter, Args&&... args) {
-    if (iter.ptr_node == nullptr) {
-      emplace_back(std::forward<Args>(args)...);
-      iter = this->begin();
-    } else {
-      if (iter.ptr_node->ptr_next == nullptr) {
-        emplace_back(std::forward<Args>(args)...);
-        iter++;
-      } else {
-        auto ptr_new = std::make_shared<Node>(std::forward<Args>(args)...);
-        iterator iter0 = iter++;
-        iter0.ptr_node->ptr_next = ptr_new;
-        assert(iter.ptr_node);
-        iter.ptr_node->ptr_prev = ptr_new;
-
-        if (iter0.ptr_node->ptr_prev == nullptr)
-          ptr_new->ptr_prev = ptr_head_;
-        else
-          ptr_new->ptr_prev = (iter0-1).ptr_node->ptr_next;
-        if (iter.ptr_node->ptr_next == nullptr)
-          ptr_new->ptr_next = ptr_tail_;
-        else
-          ptr_new->ptr_next = (iter+1).ptr_node->ptr_prev;
-        iter--;
-      }
-    }
-    return iter;
-  }
-
-  template <class... Args>
-  iterator emplace_before(iterator iter, Args&&... args) {
+  iterator emplace(iterator iter, Args&&... args) {
     if (iter.ptr_node == nullptr) {
       emplace_back(std::forward<Args>(args)...);
       iter = this->begin();

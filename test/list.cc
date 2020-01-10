@@ -5,8 +5,6 @@
 #include <algorithm>
 #include <chrono>
 #include <list>
-#include <forward_list>
-#include <iostream>
 
 #include "abc/data/copyable.h"
 #include "gtest/gtest.h"
@@ -19,7 +17,6 @@ class TestList : public ::testing::Test {
   std::list<int> std_list_of_id{ 4, 3, 2, 1 };
   std::list<Kitten> std_list_of_kitten;
   abc::list<Kitten> abc_list_of_kitten;
-  std::forward_list<Kitten> std_forward_list_of_kitten;
 };
 
 TEST_F(TestList, Empty) {
@@ -118,40 +115,14 @@ TEST_F(TestList, Erase) {
   }
 }
 
-TEST_F(TestList, EmplaceAfter) {
-  for (auto i : std_list_of_id) {
-    abc_list_of_kitten.emplace_front(i);
-    std_forward_list_of_kitten.emplace_front(i);
-  }
-  auto target = Kitten(2);
-  auto ykn_iter = std::find(abc_list_of_kitten.begin(),
-    abc_list_of_kitten.end(), target);
-  ykn_iter = abc_list_of_kitten.emplace_after(ykn_iter, -1);
-  auto std_iter = std::find(std_forward_list_of_kitten.begin(),
-    std_forward_list_of_kitten.end(), target);
-  std_iter = std_forward_list_of_kitten.emplace_after(std_iter, -1);
-
-  assert(std_iter != std_forward_list_of_kitten.end());
-  assert(ykn_iter != abc_list_of_kitten.end());
-  EXPECT_EQ(*std_iter, *ykn_iter);
-  while (!std_forward_list_of_kitten.empty()) {
-    EXPECT_EQ(abc_list_of_kitten.front(),
-      std_forward_list_of_kitten.front());
-    std_forward_list_of_kitten.pop_front();
-    abc_list_of_kitten.pop_front();
-  }
-}
-
-
-
-TEST_F(TestList, EmplaceBefore) {
+TEST_F(TestList, Emplace) {
   for (auto i : std_list_of_id) {
     abc_list_of_kitten.emplace_back(i);
     std_list_of_kitten.emplace_back(i);
   }
   auto ykn_iter = std::find(abc_list_of_kitten.begin(),
                               abc_list_of_kitten.end(), Kitten(2));
-  ykn_iter = abc_list_of_kitten.emplace_before(ykn_iter, 0);
+  ykn_iter = abc_list_of_kitten.emplace(ykn_iter, 0);
   auto std_iter = std::find(std_list_of_kitten.begin(),
                               std_list_of_kitten.end(), Kitten(2));
   std_iter = std_list_of_kitten.emplace(std_iter, 0);
